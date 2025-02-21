@@ -4,7 +4,7 @@
 - Clone the repository and move into the top-level directory `cd T-Diff`
 - Create conda environment. `conda env create -f environment.yml`
 - Activate the environment. `conda activate tdiff`
-- We provide pre-trained model of [T-Diff](....) and [area_prediction](....). For evaluation, you can download them to the directory.
+- We provide pre-trained model of [T-Diff](https://drive.google.com/file/d/1AzJEfhy8Sfu_CUiNTwO4RkZEmbX04k42/view?usp=sharing) and [area_prediction](....). For evaluation, you can download them to the directory.
 - Download the [t_diff_dataset](....).  
 
 ## Dataset
