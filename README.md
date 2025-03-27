@@ -52,3 +52,10 @@ The `data` folder should look like this
 
 ## Evaluation 
 `sh experiment_scripts/gibson/eval_tdiff.sh`
+
+## Training
+Download the [Gibson Traj dataset](https://drive.google.com/file/d/1p5h7wxRwnPZ63cwZK6DWhpJKErhWNuDb/view?usp=sharing) to `$T_Diff_ROOT/train_traj/data/gibson_traj_32`.
+
+1. Create conda environment. `conda env create -f train_traj/environment.yml`
+2. Activate the environment. `conda activate diff_train`
+3. `sh $T_Diff_ROOT/train_traj/train.sh`
