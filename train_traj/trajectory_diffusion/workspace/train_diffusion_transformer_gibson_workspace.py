@@ -70,7 +70,7 @@ class TrainDiffusionTransformerWorkspace(BaseWorkspace):
 
         train_ratio, val_ratio = 0.85, 0.15 #0.425, 0.04
         flag_test_gibson = 1
-        data_root_path = "/data/yxy/diffusion/data/sem_h32_pad_0_24_new"
+        data_root_path = "data/gibson_traj_32"
         total_num = count_file_in_folder(data_root_path)
         rng = np.random.default_rng(seed=42)
         train_idx = rng.choice(total_num, size=int(total_num*(train_ratio+val_ratio)), replace=False)
