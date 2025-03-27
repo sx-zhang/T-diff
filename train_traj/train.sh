@@ -1,6 +1,5 @@
 export PYTHONPATH=diffusion_traj
-export CUDA_VISIBLE_DEVICES=2
-export WANDB_DISABLED=true
+export CUDA_VISIBLE_DEVICES=0
 
 conda activate diff
 
