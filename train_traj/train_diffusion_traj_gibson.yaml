@@ -1,0 +1,184 @@
+_target_: trajectory_diffusion.workspace.train_diffusion_transformer_gibson_workspace.TrainDiffusionTransformerWorkspace
+checkpoint:
+  save_last_ckpt: true
+  save_last_snapshot: false
+  topk:
+    format_str: epoch={epoch:04d}-val_loss={val_loss:.3f}.ckpt
+    k: 5
+    mode: min
+    monitor_key: val_loss
+dataloader:
+  batch_size: 512
+  num_workers: 0
+  persistent_workers: false
+  pin_memory: true
+  shuffle: true
+dataset_obs_steps: 2
+ema:
+  _target_: trajectory_diffusion.model.diffusion.ema_model.EMAModel
+  inv_gamma: 1.0
+  max_value: 0.9999
+  min_value: 0.0
+  power: 0.75
+  update_after_step: 0
+exp_name: default
+horizon: 28
+keypoint_visible_rate: 1.0
+logging:
+  group: null
+  id: null
+  mode: online
+  name: trajectory_diffusion_debug
+  project: trajectory_diffusion_debug
+  resume: true
+  tags:
+  - train_diffusion_transformer_gibson
+  - gisbon
+  - default
+multi_run:
+  run_dir: data/outputs/2023.01.16/20.20.06_trajectory_diffusion_gibson
+  wandb_name_base: 2023.01.16-20.20.06_trajectory_diffusion_gibson
+n_action_steps: 8
+n_latency_steps: 0
+n_obs_steps: 1
+name: train_diffusion_transformer_gibson
+obs_as_global_cond: true
+optimizer:
+  transformer_weight_decay: 1.0e-3
+  obs_encoder_weight_decay: 1.0e-6
+  learning_rate: 1.0e-4
+  betas: [0.9, 0.95]
+
+past_action_visible: false
+policy:
+  _target_: trajectory_diffusion.policy.trajectory_diffusion_transformer_gibson_policy.TrajDiffusionTransformerGibsonPolicy
+  
+  noise_scheduler:
+    _target_: diffusers.schedulers.scheduling_ddpm.DDPMScheduler
+    beta_end: 0.02
+    beta_schedule: squaredcos_cap_v2
+    beta_start: 0.0001
+    clip_sample: true
+    num_train_timesteps: 100
+    prediction_type: epsilon
+    variance_type: fixed_small
+
+  horizon: 28
+  n_action_steps: 8
+  n_obs_steps: 1
+  num_inference_steps: 100
+
+  obs_encoder_group_norm: true
+  eval_fixed_crop: true
+  
+  n_layer: 8
+  n_cond_layers: 0
+  n_head: 4
+  n_emb: 256
+  p_drop_emb: 0.0
+  p_drop_attn: 0.3
+  causal_attn: True
+  time_as_cond: True
+  obs_as_cond: True
+
+  shape_meta:
+    action:
+      shape:
+      - 2
+    obs:
+      sem_map:
+        shape:
+        - 19
+        - 224
+        - 224
+        type: rgb
+      target:
+        shape:
+        - 19
+        type: low_dim
+      loc:
+        shape:
+        - 2
+        type: low_dim
+shape_meta:
+  action:
+    shape:
+    - 2
+  obs:
+    sem_map:
+      shape:
+      - 19
+      - 224
+      - 224
+      type: rgb
+    target:
+      shape:
+      - 19
+      type: low_dim
+    loc:
+      shape:
+      - 2
+      type: low_dim
+task:
+  env_runner:
+    _target_: trajectory_diffusion.env_runner.gibson_traj_diff_runner.GibsonTrajDiffRunner
+    fps: 10
+    legacy_test: true
+    max_steps: 300
+    n_action_steps: 8
+    n_envs: null
+    n_obs_steps: 1
+    n_test: 50
+    n_test_vis: 4
+    n_train: 6
+    n_train_vis: 2
+    past_action: false
+    test_start_seed: 100000
+    train_start_seed: 0
+  image_shape:
+  - 224
+  - 224
+  name: trajectory_diffusion_gibson
+  shape_meta:
+    action:
+      shape:
+      - 2
+    obs:
+      sem_map:
+        shape:
+        - 19
+        - 224
+        - 224
+        type: rgb
+      target:
+        shape:
+        - 19
+        type: low_dim
+      loc:
+        shape:
+        - 2
+        type: low_dim
+task_name: trajectory_diffusion_gibson
+training:
+  checkpoint_every: 10
+  debug: false
+  device: cuda:0
+  gradient_accumulate_every: 1
+  lr_scheduler: cosine
+  lr_warmup_steps: 1000
+  max_train_steps: null
+  max_val_steps: null
+  num_epochs: 1000
+  resume: true
+  rollout_every: 50
+  sample_every: 5
+  seed: 42
+  tqdm_interval_sec: 1.0
+  use_ema: true
+  val_every: 1
+val_dataloader:
+  batch_size: 512
+  num_workers: 0
+  persistent_workers: false
+  pin_memory: true
+  shuffle: false
