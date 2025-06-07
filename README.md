@@ -5,7 +5,7 @@
 - Create conda environment. `conda env create -f environment.yml`
 - Activate the environment. `conda activate tdiff`
 - We provide pre-trained model of [T-Diff](https://drive.google.com/file/d/1AzJEfhy8Sfu_CUiNTwO4RkZEmbX04k42/view?usp=sharing) and [area_prediction](https://drive.google.com/file/d/113hMyZFT5orwfcFlrX_ESRawbrr6UiT7/view?usp=sharing). For evaluation, you can download them to the directory.
-- Download the [t_diff_dataset](....).  
+- Download the [t_diff_dataset](https://drive.google.com/file/d/1p5h7wxRwnPZ63cwZK6DWhpJKErhWNuDb/view).  
 
 ## Dataset
 We use a modified version of the Gibson ObjectNav evaluation setup from [SemExp](https://github.com/devendrachaplot/Object-Goal-Navigation).
