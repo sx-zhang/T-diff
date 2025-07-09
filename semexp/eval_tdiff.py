@@ -56,7 +56,7 @@ def get_prediction_from_diff(model, maxpool, sem_map, infos, pos_intput):
         start_x, start_y, _, gx1, _, gy1, _ = pos_intput[i]
         cur_x, cur_y = start_y *20 - gx1, start_x * 20 - gy1
         start_loc[i] = torch.Tensor([cur_x, cur_y])
-        # target_id[i, infos[i]["goal_cat_id"]+4] = 1
+        target_id[i, infos[i]["goal_cat_id"]+4] = 1
     start_loc = start_loc/480
     
     input_map = torch.zeros(nums,19,480,480).to(model.device)
