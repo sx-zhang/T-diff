@@ -20,5 +20,6 @@ python eval_tdiff.py \
   --pf_masking_opt 'unexplored' \
   --use_nearest_frontier \
   --total_num_scenes "5" \
-  --select_diff_step 27 \
+  --select_diff_step 20 \
   --horizon 32 \
+  --step_test 5
